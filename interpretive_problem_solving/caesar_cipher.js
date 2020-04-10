@@ -35,22 +35,18 @@ function caesarEncrypt(string, key) {
 function encrptChar(char, key) {
   if (/[^a-z]/i.test(char)) {
     return char;
-  } 
-  let code = char.charCodeAt() + key;
-  if (char === char.toUpperCase()) {
-    return encryptUpper(char, code);
   } else {
-    return encryptLower(char, code);
+    return encryptLetter(char, key);
   }
 }
 
-function encryptUpper(char, code) {
-  code = cleanUpperCasecode(code);
-  return String.fromCharCode(code);
-}
-
-function encryptLower(char, code) {
-  code = cleanLowerCasecode(code);
+function encryptLetter(letter, key) {
+  let code = letter.charCodeAt() + key;
+  if (letter === letter.toUpperCase()) {
+    code = cleanUpperCasecode(code);
+  } else {
+    code = cleanLowerCasecode(code);
+  }
   return String.fromCharCode(code);
 }
 

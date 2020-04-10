@@ -39,17 +39,16 @@ Questions
 function diamond(size) {
   const STAR = '*'
   const SPACE = ' ';
+  let half = Math.floor(size / 2)
   let starCount = 1;
-  let spaceCount;
+  let increment = 2;
 
   for (line = 1; line <= size; line += 1) {
     spaceCount = (size - starCount) / 2
     console.log(SPACE.repeat(spaceCount) + STAR.repeat(starCount));
-
-    if (line < Math.ceil(size / 2)) {
-      starCount += 2;
-    } else {
-      starCount -= 2;
+    starCount += increment;
+    if (line === half) {
+      increment = -2;
     }
   }
 }

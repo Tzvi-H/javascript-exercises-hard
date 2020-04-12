@@ -17,12 +17,15 @@ Algorithm
 function star(size) {
   const totalSpaces = size - 3;
   let middle = Math.floor(size / 2);
+
   for (line = 0; line < middle; line += 1) {
     let margin = line;
     let padding = totalSpaces / 2 - margin;
     printRow(padding, margin);
   }
+
   console.log('*'.repeat(size));
+  
   for (line = 0; line < middle; line += 1) {
     let padding = line;
     let margin = totalSpaces / 2 - padding;

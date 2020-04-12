@@ -22,8 +22,11 @@ Algorithm
 function rotateArray(array) {
   if (!Array.isArray(array)) return undefined;
   if (array.length === 0) return [];
+
+  let first = array[0];
+  let back = array.slice(1);
   
-  return array.slice(1).concat(array[0]);
+  return back.concat(first);
 }
 
 console.log(rotateArray([7, 3, 5, 2, 9, 1]));       // [3, 5, 2, 9, 1, 7]

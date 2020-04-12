@@ -9,10 +9,12 @@ function twoEqual(side1, side2, side3) {
 }
 
 function validTriangle(side1, side2, side3) {
-  let max = Math.max(side1, side2, side3);
   let sum = side1 + side2 + side3;
-  return (side1 > 0 && side2 > 0 && side3 > 0) &&
-         (sum - max) > max;
+  let min = Math.min(side1, side2, side3);
+  let max = Math.max(side1, side2, side3);
+  let middle = sum - min - max;
+  
+  return min > 0 && middle + min > max;
 }
 
 function triangle(side1, side2, side3) {

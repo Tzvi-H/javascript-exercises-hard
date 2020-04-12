@@ -61,17 +61,19 @@ function shiftValue(char) {
 }
 
 function encrypt(text, keyword) {
-  let result = '';
-  for (char of text) {
-    if (/[^a-z]/i.test(char)) {
-      result += char;
-    } else {
-      let shiftChar = nextChar(keyword);
-      let shiftAmount =  shiftValue(shiftChar);
-      result += shiftLetter(char, shiftAmount);
-    }  
+  return text.split('')
+             .map(char => encryptChar(char, keyword))
+             .join('');
+}
+
+function encryptChar(char, keyword) {
+  if (/[^a-z]/i.test(char)) {
+    return char;
+  } else {
+    let shiftChar = nextChar(keyword);
+    let shiftAmount =  shiftValue(shiftChar);
+    return shiftLetter(char, shiftAmount);
   }
-  return result;
 }
 
 function nextChar(keyword) {
@@ -95,17 +97,6 @@ function shiftLetter(char, shiftAmount) {
   }
   return String.fromCharCode(charcode);
 }
-//  SUBPROCESS shiftLetter(char, shiftvalue)
-//     - code = char.code + shiftvalue 
-//     - if char is lowercase
-//       - if code is greater than the code for 'z'
-//         - get the difference of code and 'z' code
-//         - code = code for 'a' + the difference - 1
-//     else -
-//       - - if code is greater than the code for 'Z'
-//         - get the difference of code and 'Z' code
-//         - code = code for 'A' + the difference - 1  
-//     - return the char at the code's value
 
 console.log(encrypt('abc', 'abc')); //  ace
 console.log(encrypt("aA's", 'aBc')); // aB'u
